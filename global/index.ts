@@ -11,7 +11,7 @@ export default class Global {
     return Global.data;
   }
 
-  setData(key: string | Object, value: any) {
+  setData(key: any, value: any) {
     if (typeFun(key) === 'object') {
       Global.data = { ...Global.data, ...key };
       return true;
