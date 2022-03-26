@@ -4,14 +4,14 @@ export default class Global {
 
   static data: Record<string, unknown> = {};
 
-  getGlobalDate(key?: string) {
+  getData(key?: string) {
     if (key && typeof key === 'string') {
       return Global.data[key];
     }
     return Global.data;
   }
 
-  setGlobalData(key: string | Object, value: any) {
+  setData(key: string | Object, value: any) {
     if (typeFun(key) === 'object') {
       Global.data = { ...Global.data, ...key };
       return true;
