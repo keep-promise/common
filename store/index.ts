@@ -1,11 +1,11 @@
 class Store {
   private __store: Record<string, any> = {};
   
-  get (key: string) {
+  get store(key: string) {
     return this.__store[key];
   }
   
-  set (key: string, value: any) {
+  set store(key: string, value: any) {
     this.__store[key] = value;
   }
 
