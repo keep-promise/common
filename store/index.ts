@@ -1,12 +1,27 @@
 class Store {
-  private __store: Record<string, any> = {};
+
+  private _store: Record<string, unknown>;
   
-  get store(key: string) {
-    return this.__store[key];
+  constructor(store?: Record<string, unknown>) {
+    this._store = store || {};
   }
   
-  set store(key: string, value: any) {
-    this.__store[key] = value;
+  // 拦截get
+  public get store(key: string): Record<string, unknown> {
+    return this._store[key];
+  }
+  
+  //  拦截set
+  public set store(key: string, value: any) {
+    this._store[key] = value;
+  }
+  
+  public get<T>(key: string) {
+    return this._store[key] as T;
+  }
+  
+  public set(key: string, value: unkown) {
+    this._store[key] = value;
   }
 
 }
