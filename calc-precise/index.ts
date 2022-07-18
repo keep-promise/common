@@ -3,7 +3,7 @@
 1.先转整数
 2.整数运算
 3.化为小数
-*/
+ */
 
 
 
@@ -13,7 +13,13 @@
  * @return {*}
  */
 function decimalDigits(num: number | string): number {
-
+  let n = 0;
+  try {
+    n = num.toString().split('.')[1].length;
+  } catch(e) {
+    console.error('')
+  }
+  return n;
 }
 
 /**
@@ -23,7 +29,11 @@ function decimalDigits(num: number | string): number {
  * @return {*}
  */
 function add(a: number | string, b: number | string) {
-
+  const ra = decimalDigits(a);
+  const rb = decimalDigits(b);
+  const r = Math.pow(10, Math.max(ra, rb));
+  const result = (Number(a) * r + Number(b) * r) / r;
+  return result;
 }
 
 console.log('js prototype add', 0.1 + 0.2);
@@ -36,7 +46,13 @@ console.log('js add calc', add(0.1, 0.2));
  * @return {*}
  */
 function multiply(a: number | string, b: number | string) {
-
+  let m = 0;
+  m += decimalDigits(a);
+  m += decimalDigits(b);
+  const a1 = Number(a.toString().replace('.', ''));
+  const b1 = Number(b.toString().replace('.', ''));
+  const result = a1 * b1 / Math.pow(10, m);
+  return result;
 }
 
 /**
@@ -46,7 +62,12 @@ function multiply(a: number | string, b: number | string) {
  * @return {*}
  */
 function divide(a: number | string, b: number | string) {
-
+  const m1 = decimalDigits(a);
+  const m2 = decimalDigits(b);
+  const a1 = Number(a.toString().replace('.', ''));
+  const b2 = Number(b.toString().replace('.', ''));
+  const result = (a1 / b2) * Math.pow(10, m2 - m1);
+  return result;
 }
 
 /**
@@ -55,5 +76,6 @@ function divide(a: number | string, b: number | string) {
  * @return {*}
  */
 function decimalToPercent(a: number) {
-
+  const m1 = (a * 100).toFixed(0);
+  return `${m1}%`;
 }
